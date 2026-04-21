@@ -1,0 +1,91 @@
+version: '3.8'
+
+services:
+  # Servidor PHP-FPM (Laravel)
+  app:
+    build:
+      context: ./docker/php
+      dockerfile: Dockerfile
+    container_name: wealthos_app
+    restart: unless-stopped
+    working_dir: /var/www/html
+    volumes:
+      - ./backend:/var/www/html
+      - ./docker/php/local.ini:/usr/local/etc/php/conf.d/local.ini
+    environment:
+      - PHP_OPCACHE_ENABLE=1
+    networks:
+      - wealthos_net
+    depends_on:
+      - mysql
+      - redis
+
+  # Nginx como reverse proxy
+  nginx:
+    image: nginx:alpine
+    container_name: wealthos_nginx
+    restart: unless-stopped
+    ports:
+      - "8000:80"
+    volumes:
+      - ./backend:/var/www/html
+      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+    networks:
+      - wealthos_net
+    depends_on:
+      - app
+
+  # MySQL 8.0
+  mysql:
+    image: mysql:8.0
+    container_name: wealthos_mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: wealthos
+      MYSQL_USER: wealthos_user
+      MYSQL_PASSWORD: wealthos_password
+      MYSQL_ROOT_PASSWORD: root_password
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./docker/mysql/my.cnf:/etc/mysql/conf.d/my.cnf
+    networks:
+      - wealthos_net
+
+  # Redis para caché de precios
+  redis:
+    image: redis:7-alpine
+    container_name: wealthos_redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    command: redis-server --appendonly yes --requirepass "redis_password"
+    networks:
+      - wealthos_net
+
+  # Frontend Vue 3 (dev server)
+  frontend:
+    image: node:20-alpine
+    container_name: wealthos_frontend
+    restart: unless-stopped
+    working_dir: /app
+    volumes:
+      - ./frontend:/app
+    ports:
+      - "5173:5173"
+    command: sh -c "npm install && npm run dev -- --host 0.0.0.0"
+    networks:
+      - wealthos_net
+
+volumes:
+  mysql_data:
+    driver: local
+  redis_data:
+    driver: local
+
+networks:
+  wealthos_net:
+    driver: bridge
