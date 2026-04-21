@@ -198,3 +198,37 @@ docker-compose down && docker-compose up -d --build
 | 🎯 Metas financieras | ✅ Completo |
 | 📈 Simulador de escenarios | ✅ Completo |
 | 🤖 Asesor IA (Groq) | ✅ Completo |
+| 👫 Espacio compartido (pareja/familia) | ✅ Completo |
+
+---
+
+## ¿Qué es WealthOS?
+
+WealthOS es una aplicación web de finanzas personales diseñada para darte una visión completa e inteligente de tu situación financiera. No es solo un registro de gastos — es una plataforma integrada que conecta tus inversiones, tus ingresos, tus metas y un asesor con inteligencia artificial que conoce tus datos reales.
+
+### Lo que puedes hacer
+
+**💼 Portafolio de inversiones**
+Registra acciones (chilenas e internacionales), criptomonedas, fondos mutuos, ETFs, depósitos a plazo y más. WealthOS obtiene los precios actuales automáticamente desde CoinGecko, Yahoo Finance y la CMF de Chile, y calcula tu rentabilidad, ganancia/pérdida y patrimonio total en pesos chilenos y dólares en tiempo real.
+
+**💸 Control de ingresos y gastos**
+Registra cada transacción por categoría (alimentación, transporte, vivienda, salud, etc.). Visualiza cuánto gastas por categoría con gráficos de dona, compara ingresos vs gastos de los últimos 6 meses con gráficos de barras y mide tu tasa de ahorro mensual automáticamente.
+
+**🎯 Metas financieras**
+Crea metas con nombre, monto objetivo y fecha límite. WealthOS calcula automáticamente cuánto necesitas ahorrar por mes para llegar a tiempo, muestra el porcentaje de progreso y te dice si vas al día o si estás en riesgo de no cumplirla.
+
+**📈 Simulador de inversiones**
+Compara hasta 3 instrumentos financieros distintos lado a lado. Ajusta el monto inicial, el aporte mensual y el plazo con sliders interactivos y visualiza en un gráfico la proyección de crecimiento de cada opción para tomar decisiones más informadas.
+
+**🤖 Asesor financiero con IA**
+Un chat con inteligencia artificial (modelo llama-3.3-70b de Groq) que tiene acceso a tu información financiera real: tu patrimonio, tus gastos del mes, tus metas y tu portafolio. Puedes consultarle si estás ahorrando bien, pedirle que analice tu situación o preguntarle sobre estrategias de inversión. Guarda el historial de conversaciones por sesión.
+
+**👫 Espacio compartido para parejas o familia**
+Crea un espacio compartido donde dos o más personas pueden registrar ingresos y gastos en común, ver el resumen del mes (ingresos, gastos, ahorro compartido) y trabajar juntos hacia metas financieras en equipo. Cada miembro mantiene sus finanzas personales completamente separadas. Se invita por email y si la persona ya tiene cuenta se une automáticamente.
+
+### ¿Para quién es?
+
+- Personas que quieren tener todo su dinero ordenado en un solo lugar
+- Parejas que manejan gastos compartidos pero también finanzas individuales
+- Quienes invierten en acciones, cripto o fondos y quieren ver su rentabilidad real
+- Cualquiera que quiera entender su situación financiera con datos reales y no solo planillas de Excel
